@@ -42,6 +42,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.core.view.ViewCompat;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 
@@ -382,6 +383,41 @@ import java.util.Map;
         });
     }
 
+    /**
+     * 方案四：在Activity中添加透明层
+     *
+     * @param application Application
+     */
+    @TargetApi(14)
+    public static void addOverlayLayout(Application application) {
+        application.registerActivityLifecycleCallbacks(new EmptyActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, Bundle bundle) {
+                //添加透明层
+                addSensorsDataTrackLayout(activity);
+            }
+        });
+    }
+
+    /**
+     * 添加透明层
+     *
+     * @param activity Activity
+     */
+    private static void addSensorsDataTrackLayout(final Activity activity) {
+        try {
+            View decorView = activity.getWindow().getDecorView();
+            if (decorView instanceof ViewGroup) {
+                SensorsDataAppClickOverlayLayout sensorsDataOverlayLayout = new SensorsDataAppClickOverlayLayout(activity);
+
+                ((ViewGroup) decorView).addView(sensorsDataOverlayLayout,
+                        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                ViewCompat.setElevation(sensorsDataOverlayLayout, 999F);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Delegate view OnClickListener

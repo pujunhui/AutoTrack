@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "AutoTrack"
 include(":app")
 include(":sdk")
+includeBuild("plugin")

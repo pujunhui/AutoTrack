@@ -14,4 +14,6 @@
 
 3.3、代理View对象的AccessibilityDelegate对象
 
+3.4、在Activity上方添加悬浮Layout，捕获触摸事件
+
 ![](screenshot/image.png)

@@ -48,7 +48,8 @@ public class SensorsDataAPI {
         SensorsDataPrivate.observerAppAndActivityState(application);
 //        SensorsDataPrivate.delegateAllViewEventsListener(application);
 //        SensorsDataPrivate.delegateWindowCallback(application);
-        SensorsDataPrivate.delegateAllViewAccessibility(application);
+//        SensorsDataPrivate.delegateAllViewAccessibility(application);
+        SensorsDataPrivate.addOverlayLayout(application);
     }
 
     /**
